@@ -1,0 +1,88 @@
+//
+// Labels
+// --------------------------------------------------
+
+.label-variant(@color, @color-active) {
+  border-color: @color;
+  color: @color;
+
+  &:active {
+    border-color: @color-active;
+    color: @color-active;
+  }
+
+  &.label-fill {
+    color: white;
+    background-color: @color;
+    &:active {
+      background-color: @color-active;
+    }
+  }
+
+  &.label-empty {
+    border-color: @color;
+    color: @color;
+    background-color: transparent;
+    &:active {
+      border-color: @color-active;
+      color: @color-active;
+      background-color: transparent;
+    }
+  }
+}
+
+.label {
+  @label-font-size: 0.75;
+  display: inline-block;
+  font-size: percentage(@label-font-size);
+  padding: .25em .5em .25em;
+  font-weight: bold;
+  //line-height: ~"calc(150% + 4 * 1px)";
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+}
+
+// Colors
+// Contextual variations (linked labels get darker on :hover)
+
+.label-themes() {
+
+  .label {
+    .label-variant(@color-primary, @color-primary-active);
+  }
+  .label-primary {
+    .label-variant(@color-primary, @color-primary-active);
+  }
+
+  .label-success {
+    .label-variant(@color-success, @color-success-active);
+  }
+
+  .label-warning {
+    .label-variant(@color-warning, @color-warning-active);
+  }
+
+  .label-danger {
+    .label-variant(@color-danger, @color-danger-active);
+  }
+}
+
+.label-themes();
+
+.label-size(@font-size) {
+  font-size: percentage(@font-size);
+}
+
+
+.label-lg {
+  .label-size(1);
+}
+
+.label-2x {
+  .label-size(1.25);
+}

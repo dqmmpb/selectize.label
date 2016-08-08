@@ -1,0 +1,10 @@
+node_modules
+.tmp
+.idea
+.yo-rc.json
+bower_components
+test/bower_components
+tar
+build
+demo/assets
+demo/development

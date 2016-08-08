@@ -1,0 +1,29 @@
+{
+  "name": "selectize.label",
+  "version": "1.0.0",
+  "main": "dist/js/selectize.label.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "build",
+    ".babelrc",
+    ".editorconfig",
+    ".gitignore",
+    ".gitattributes",
+    "gulp",
+    "**/demo",
+    "gulpfile.babel.js",
+    "package.json"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "modernizr": "~2.8.1",
+    "jquery": "^2.2.0"
+  },
+  "devDependencies": {
+    "mocha": "~2.3.4",
+    "chai": "~3.4.2"
+  }
+}
