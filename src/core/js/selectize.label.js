@@ -24,11 +24,14 @@
       'title': 'n'
     },
     valueField: 'code',
+    labelField: 'title',
     items: [],
     selectOnTab: true,
     onClick: function(event) {
-      var tage = event.target;
-      console.log(tage, event);
+    },
+    onChange: function($self, event) {
+      //var target = event.currentTarget;
+      //console.log(target, $self.$selectize, event);
     }
   };
 
@@ -99,6 +102,11 @@
               var $subLevel = createLabel(value, lvl + 1);
               if($subLevel)
                 $subLevel.appendTo($self);
+
+              // 自定义的label的click事件，注意：对于已经选中的，不会重复触发
+              if(options.onChange && typeof options.onChange === 'function') {
+                options.onChange.call(this, $self, event);
+              }
             }
           }
         });
@@ -110,7 +118,7 @@
             if ($target.hasClass(options.cssClass.label) && !$target.hasClass(options.cssClass.selected)) {
               // 触发change事件，并让change事件冒泡传递给父级（labels），用以触发labels的change事件，以实现选中的修改
               $(this).trigger('change');
-              // 自定义的click事件，注意：对于已经选中的，不会重复触发
+              // 自定义的label的click事件，注意：对于已经选中的，不会重复触发
               if(options.onClick && typeof options.onClick === 'function') {
                 options.onClick.call(this, event);
               }
@@ -146,12 +154,11 @@
           labels.appendTo($self);
       }
 
-
-    /*  // 获取当前选中的option，返回的是$selectizez中选中的option对象
+      // 获取当前选中的option，返回的是$selectizez中选中的option对象
       $self.selectedObject = function() {
         if(!this.$selectize) return null;
         return this.$selectize.map(function(x) {
-          return x.selected && x.selected.v;
+          return x && x.v;
         }).filter(function(x) {
           if(x)
             return x;
@@ -161,7 +168,7 @@
       $self.selectedValue = function() {
         if(!this.$selectize) return null;
         return this.$selectize.map(function(x) {
-          return x.selected && x.selected.v[options.fieldMap[options.valueField]];
+          return x && x.v[options.fieldMap[options.valueField]];
         }).filter(function(x) {
           if(x)
             return x;
@@ -170,14 +177,12 @@
       $self.selectedLabel = function() {
         if(!this.$selectize) return null;
         return this.$selectize.map(function(x) {
-          return x.selected && x.selected.v[options.fieldMap[options.labelField]];
+          return x && x.v[options.fieldMap[options.labelField]];
         }).filter(function(x) {
           if(x)
             return x;
         });
       };
-
-      selectize($self, $select, city_map.c);*/
 
     });
   };

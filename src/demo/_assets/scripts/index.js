@@ -19,6 +19,10 @@ $(function() {
       },
       input: {
         placeholder: $(this).data('placeholder')
+      },
+      onChange: function($self, event) {
+        $('.selected-label').html($self.selectedLabel().join(','));
+        $('.selected-value').html($self.selectedValue().join(','));
       }
     });
   });
